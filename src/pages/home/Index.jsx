@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { fetchTopRatedMovies } from "../../config/AjaxQueries";
+import {
+  fetchPopularActors,
+  fetchTopRatedMovies,
+} from "../../config/AjaxQueries";
 import { fetchTopRatedSeries } from "../../config/AjaxQueries";
 
 import { CreateReactQuery } from "../../hooks/CreateReactQuery";
@@ -16,72 +19,94 @@ import { ButtonCustom } from "../../components/layouts/navigation/Navbar";
 import _MoviesRatedSection from "../../components/layouts/section/top-rated-movies/_TopRatedMovies";
 import _TVSRatedSection from "../../components/layouts/section/series/_TopRatedMovies";
 import { Link } from "react-router-dom";
+import _ActorsSection from "../../components/layouts/section/actrors/_ActorsSection";
+import { usePage } from "../../hooks/usePage";
 
 // css
 
 // Queries of MOVI API
 
 const HomePage = (props) => {
-	const [movieRatedPage, setMovieRatedPage] = useState(1);
-	const [movieTVSRated, setMovieTVSRated] = useState(1);
-	const [searchData, setSearchDate] = useState("");
+  const [movieRatedPage, setMovieRatedPage] = usePage(1);
+  const [movieSeriesRated, setMovieSeriesRated] = usePage(1);
+  const [PopularactorsPage, setPopularactors] = usePage(1);
+  const [searchData, setSearchDate] = usePage("");
 
-	const {
-		data: moviesRated,
-		isLoading: loadingMoviesRated,
-		isPreviousData: isPreviousMoviesRated,
-		isFetching: isFetchingMoviesRated,
-		error: errorOfMoviesRated,
-	} = CreateReactQuery(
-		"moviesRated",
-		String(movieRatedPage),
-		fetchTopRatedMovies(movieRatedPage)
-	);
+  const {
+    data: moviesRated,
+    isLoading: loadingMoviesRated,
+    isPreviousData: isPreviousMoviesRated,
+    isFetching: isFetchingMoviesRated,
+    error: errorOfMoviesRated,
+  } = CreateReactQuery(
+    "moviesRated",
+    String(movieRatedPage),
+    fetchTopRatedMovies(movieRatedPage)
+  );
 
-	const {
-		data: TVSRated,
-		isLoading: loadingTVSRated,
-		isPreviousData: isPreviousTVSRated,
-		isFetching: isFetchingTVSRated,
-		error: errorOfMoviePopular,
-	} = CreateReactQuery(
-		"TVSRated",
-		String(movieTVSRated),
-		fetchTopRatedSeries(movieTVSRated)
-	);
+  const {
+    data: SeriesRated,
+    isLoading: loadingSeriesRated,
+    isPreviousData: isPreviousSeriesRated,
+    isFetching: isFetchingSeriesRated,
+    error: errorOfMoviePopular,
+  } = CreateReactQuery(
+    "SeriesRated",
+    String(movieSeriesRated),
+    fetchTopRatedSeries(movieSeriesRated)
+  );
 
-	const isLoading = loadingMoviesRated && loadingTVSRated;
-	const error = errorOfMoviePopular && errorOfMoviesRated;
-	const isPreviousData = isPreviousMoviesRated && isPreviousTVSRated;
-	const isFetching = isFetchingMoviesRated && isFetchingTVSRated;
+  const {
+    data: Popularactors,
+    isLoading: loadingPopularactors,
+    isPreviousData: isPreviousPopularactors,
+    isFetching: isFetchingPopularactors,
+    error: errorOfPopularactors,
+  } = CreateReactQuery(
+    "SeriesRated",
+    String(PopularactorsPage),
+    fetchPopularActors(PopularactorsPage)
+  );
 
-	if (isLoading) return <LinearProgress />;
-	else if (error) return <div>Oups,erreur du serveur..</div>;
+  const isLoading = loadingMoviesRated && loadingSeriesRated;
+  const error = errorOfMoviePopular && errorOfMoviesRated;
+  const isPreviousData = isPreviousMoviesRated && isPreviousSeriesRated;
+  const isFetching = isFetchingMoviesRated && isFetchingSeriesRated;
 
-	return (
-		<div>
-			<_BannerSection topRatedMovies={TVSRated} />
-			<Wrapper>
-				<Container>
-					<h2>Les Meilleurs Films</h2>
+  if (isLoading) return <LinearProgress />;
+  else if (error) return <div>Oups,erreur du serveur..</div>;
 
-					<_MoviesRatedSection topRatedMovies={moviesRated} />
+  return (
+    <div>
+      <_BannerSection topRatedMovies={SeriesRated} />
+      <Wrapper>
+        <Container>
+          <h2>Les Meilleurs Films</h2>
 
-					<ButtonCustom className="button_chat" label="Voir plus">
-						<Link to="/films">Voir plus</Link>
-					</ButtonCustom>
+          <_MoviesRatedSection topRatedMovies={moviesRated} label="home" />
 
-					<h2 className="mt-2">Les Meilleurs Series</h2>
-					<Grid container spacing={3} className="grid-container">
-						<_TVSRatedSection topRatedSeries={TVSRated} />
-					</Grid>
-					<ButtonCustom className="button_chat" label="Voir plus">
-						<Link to="/series">Voir plus</Link>
-					</ButtonCustom>
-				</Container>
-			</Wrapper>
-		</div>
-	);
+          <ButtonCustom
+            className="button_chat"
+            label="Voir plus"
+            link="/films"
+          />
+
+          <h2 className="mt-2">Les Meilleurs Series</h2>
+
+          <_TVSRatedSection topRatedSeries={SeriesRated} label="home" />
+
+          <ButtonCustom
+            className="button_chat"
+            label="Voir plus"
+            link="/series"
+          />
+
+          <h2 className="mt-2">Les Acteurs Les Plus populaires</h2>
+          <_ActorsSection Popularactors={Popularactors} />
+        </Container>
+      </Wrapper>
+    </div>
+  );
 };
 
 export default HomePage;

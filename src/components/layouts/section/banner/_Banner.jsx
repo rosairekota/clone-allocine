@@ -9,44 +9,44 @@ import "slick-carousel/slick/slick-theme.css";
 
 import Slider from "react-slick";
 function SamplePrevArrow(props) {
-	const { className, style, onClick } = props;
-	return (
-		<div
-			className={className}
-			style={{ ...style, display: "block", background: "red" }}
-			onClick={onClick}
-		/>
-	);
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "red" }}
+      onClick={onClick}
+    />
+  );
 }
 
 const _Banner = ({ topRatedMovies }) => {
-	const settings = {
-		dots: true,
-		infinite: true,
-		speed: 500,
-		infinite: true,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		adaptiveHeight: true,
-	};
-	return (
-		<>
-			<Wrapper>
-				<Carousel transitionTime={0.2}>
-					{topRatedMovies?.map((item) => (
-						<Slider {...settings}>
-							<div>
-								<img
-									src={`${moviesURL(0).imagesURL}${item.poster_path}`}
-									alt={item.title}
-									className="img-custom"
-								/>
-							</div>
-						</Slider>
-					))}
-				</Carousel>
-			</Wrapper>
-		</>
-	);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+  };
+  return (
+    <>
+      <Wrapper>
+        <Carousel transitionTime={0.2}>
+          {topRatedMovies?.map((item) => (
+            <Slider {...settings}>
+              <div>
+                <img
+                  src={`${moviesURL(0).imagesOginalURL}${item.poster_path}`}
+                  alt={item.title}
+                  className="img-custom"
+                />
+              </div>
+            </Slider>
+          ))}
+        </Carousel>
+      </Wrapper>
+    </>
+  );
 };
 export default _Banner;

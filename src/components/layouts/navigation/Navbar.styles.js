@@ -1,6 +1,4 @@
-import Styled from 'styled-components';
-
-
+import Styled from "styled-components";
 
 export const Wrapper = Styled.header`
  //background-color:#2B2D3B;
@@ -42,10 +40,17 @@ export const Wrapper = Styled.header`
     justify-content:space-between;
     align-items:center;
   }
+  
   .navbar__search{
     display:flex;
     flex-direction:row;
     justify-content:flex-end;
+    align-items:center;
+  }
+  .btn-click{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
     align-items:center;
   }
 
@@ -54,7 +59,8 @@ export const Wrapper = Styled.header`
     color:#ea5152;
     font-weight:bold;
   }
-  }
+  
+  
  @media screen and (min-width:768px){
   .inputSearch{
     width: 400px;

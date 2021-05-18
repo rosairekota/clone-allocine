@@ -14,99 +14,103 @@ import Series from "./pages/series/";
 import Movies from "./pages/movies";
 import GlobalStyle from "./components/theme/GlobalStyle.styles";
 import { calculatePageCount, calculateOffset } from "./helpers/helpes";
+// import Detail from "./pages/details/Detail";
 
 const PER_PAGE = 20;
 
 const App = () => {
-	const [topRatedMoviesPage, setTopRatedMoviesPage] = usePage(1);
-	const [polularMoviesPage, setPolularMoviesPage] = usePage(1);
+  const [topRatedMoviesPage, setTopRatedMoviesPage] = usePage(1);
+  const [polularMoviesPage, setPolularMoviesPage] = usePage(1);
 
-	const [searchTerm, setSearchTerm] = useState("");
-	const [searchResult, setSearchResult] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
 
-	const {
-		data: moviesRated,
-		isLoading: loadingMoviesRated,
-		isPreviousData: isPreviousMoviesRated,
-		isFetching: isFetchingMoviesRated,
-		error: errorOfMoviesRated,
-	} = CreateReactQuery(
-		"movierated",
-		String(topRatedMoviesPage),
-		fetchTopRatedMovies(topRatedMoviesPage)
-	);
+  const {
+    data: moviesRated,
+    isLoading: loadingMoviesRated,
+    isPreviousData: isPreviousMoviesRated,
+    isFetching: isFetchingMoviesRated,
+    error: errorOfMoviesRated,
+  } = CreateReactQuery(
+    "movierated",
+    String(topRatedMoviesPage),
+    fetchTopRatedMovies(topRatedMoviesPage)
+  );
 
-	const {
-		data: moviesPopular,
-		isLoading: loadingMoviesPopular,
-		isPreviousData: isPreviousMoviesPopular,
-		isFetching: isFetchingMoviesPopular,
-		error: errorOfMoviePopular,
-	} = CreateReactQuery(
-		"moviepopular",
-		String(polularMoviesPage),
-		fetchPopularMovies(polularMoviesPage)
-	);
+  const {
+    data: moviesPopular,
+    isLoading: loadingMoviesPopular,
+    isPreviousData: isPreviousMoviesPopular,
+    isFetching: isFetchingMoviesPopular,
+    error: errorOfMoviePopular,
+  } = CreateReactQuery(
+    "moviepopular",
+    String(polularMoviesPage),
+    fetchPopularMovies(polularMoviesPage)
+  );
 
-	const isLoading = loadingMoviesRated && loadingMoviesPopular;
-	const error = errorOfMoviePopular && errorOfMoviesRated;
-	const isPreviousData = isPreviousMoviesRated && isPreviousMoviesPopular;
-	const isFetching = isFetchingMoviesRated && isFetchingMoviesPopular;
+  const isLoading = loadingMoviesRated && loadingMoviesPopular;
+  const error = errorOfMoviePopular && errorOfMoviesRated;
+  const isPreviousData = isPreviousMoviesRated && isPreviousMoviesPopular;
+  const isFetching = isFetchingMoviesRated && isFetchingMoviesPopular;
 
-	if (isLoading) return <LinearProgress />;
-	else if (error) return <div>Oups,erreur du serveur..</div>;
+  if (isLoading) return <LinearProgress />;
+  else if (error) return <div>Oups,erreur du serveur..</div>;
 
-	const handelSubmit = (e) => {
-		e.preventDefault();
+  const handelSubmit = (e) => {
+    e.preventDefault();
 
-		searchResult(searchTerm);
-	};
+    searchResult(searchTerm);
+  };
 
-	const handleOnSelect = (item) => {
-		setSearchTerm(item);
-	};
-	const handleOnSearch = (e) => {
-		setSearchTerm(e.target.value);
-	};
-	const handleMoviesRatedPagination = ({ selected: selectedPage }) => {
-		setTopRatedMoviesPage(selectedPage);
-	};
+  const handleOnSelect = (item) => {
+    setSearchTerm(item);
+  };
+  const handleOnSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+  const handleMoviesRatedPagination = ({ selected: selectedPage }) => {
+    setTopRatedMoviesPage(selectedPage);
+  };
 
-	const handleMoviesPopularPagination = ({ selected: selectedPage }) => {
-		setPolularMoviesPage(selectedPage);
-	};
-	const offset = calculateOffset(topRatedMoviesPage, PER_PAGE);
+  const handleMoviesPopularPagination = ({ selected: selectedPage }) => {
+    setPolularMoviesPage(selectedPage);
+  };
+  const offset = calculateOffset(topRatedMoviesPage, PER_PAGE);
 
-	return (
-		<>
-			<GlobalStyle />
-			<Navbar
-				handelSubmit={handelSubmit}
-				handleOnSelect={handleOnSelect}
-				handleOnSearch={handleOnSearch}
-			></Navbar>
+  return (
+    <>
+      <GlobalStyle />
+      <Navbar
+        handelSubmit={handelSubmit}
+        handleOnSelect={handleOnSelect}
+        handleOnSearch={handleOnSearch}
+      ></Navbar>
 
-			<Switch>
-				<Route exact path="/">
-					<Home />
-				</Route>
-				<Route path="/films">
-					<Movies
-						moviesRated={moviesRated}
-						moviesPopular={moviesPopular}
-						topMoviesRatedPage={topRatedMoviesPage}
-						pageCount={calculatePageCount(PER_PAGE, 8704)}
-						offsets={offset + PER_PAGE}
-						offset={offset}
-						handleMoviesRatedPagination={handleMoviesRatedPagination}
-						handleMoviesPopularPagination={handleMoviesPopularPagination}
-					/>
-				</Route>
-				<Route path="/series" component={Series} />
-				<Route path="/movie/:id" component={Series} />
-			</Switch>
-		</>
-	);
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/films">
+          <Movies
+            moviesRated={moviesRated}
+            moviesPopular={moviesPopular}
+            topMoviesRatedPage={topRatedMoviesPage}
+            pageCount={calculatePageCount(PER_PAGE, 8704)}
+            offsets={offset + PER_PAGE}
+            offset={offset}
+            handleMoviesRatedPagination={handleMoviesRatedPagination}
+            handleMoviesPopularPagination={handleMoviesPopularPagination}
+          />
+        </Route>
+        <Route path="/series" component={Series} />
+
+        {/* <Route path="/view-detail/:id">
+          <Detail />
+        </Route> */}
+      </Switch>
+    </>
+  );
 };
 
 export default App;
