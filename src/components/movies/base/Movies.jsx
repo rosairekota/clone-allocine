@@ -15,12 +15,13 @@ const Movies = ({ movie }) => {
           alt="Avatar"
           className="image"
         />
+
         <p className="body__content"> Votes ★★★: {movie.vote_count}</p>
-        <div className="overlay">
-          <div className="text">
-            <Link to={`/view-detail/${movie.id}`}>{movie.overview}</Link>
+        <Link to={`/view-detail/${movie.id}`}>
+          <div className="overlay">
+            <div className="text">{movie.title ? movie.title : movie.name}</div>
           </div>
-        </div>
+        </Link>
       </div>
     </Wrapper>
   );

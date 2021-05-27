@@ -20,17 +20,15 @@ import _MoviesRatedSection from "../../components/layouts/section/top-rated-movi
 import _TVSRatedSection from "../../components/layouts/section/series/_TopRatedMovies";
 import { Link } from "react-router-dom";
 import _ActorsSection from "../../components/layouts/section/actrors/_ActorsSection";
-import { usePage } from "../../hooks/usePage";
-
-// css
+import { UsePage } from "../../hooks/UsePage";
 
 // Queries of MOVI API
 
 const HomePage = (props) => {
-  const [movieRatedPage, setMovieRatedPage] = usePage(1);
-  const [movieSeriesRated, setMovieSeriesRated] = usePage(1);
-  const [PopularactorsPage, setPopularactors] = usePage(1);
-  const [searchData, setSearchDate] = usePage("");
+  const [movieRatedPage, setMovieRatedPage] = UsePage(1);
+  const [movieSeriesRated, setMovieSeriesRated] = UsePage(1);
+  const [PopularactorsPage, setPopularactors] = UsePage(1);
+  const [searchData, setSearchDate] = UsePage("");
 
   const {
     data: moviesRated,

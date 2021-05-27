@@ -1,7 +1,7 @@
 import React from "react";
 
-function Series(props) {
-	return <div></div>;
-}
+const Series = (props) => {
+  return <div>toto</div>;
+};
 
 export default Series;

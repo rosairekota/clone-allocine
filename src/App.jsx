@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { usePage } from "./hooks/usePage";
+import { UsePage } from "./hooks/UsePage";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
 import Navbar from "./components/layouts/navigation/Navbar";
@@ -14,13 +14,13 @@ import Series from "./pages/series/";
 import Movies from "./pages/movies";
 import GlobalStyle from "./components/theme/GlobalStyle.styles";
 import { calculatePageCount, calculateOffset } from "./helpers/helpes";
-// import Detail from "./pages/details/Detail";
+import ViewDetail from "./pages/details/ViewDetail";
 
 const PER_PAGE = 20;
 
 const App = () => {
-  const [topRatedMoviesPage, setTopRatedMoviesPage] = usePage(1);
-  const [polularMoviesPage, setPolularMoviesPage] = usePage(1);
+  const [topRatedMoviesPage, setTopRatedMoviesPage] = UsePage(1);
+  const [polularMoviesPage, setPolularMoviesPage] = UsePage(1);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -105,9 +105,7 @@ const App = () => {
         </Route>
         <Route path="/series" component={Series} />
 
-        {/* <Route path="/view-detail/:id">
-          <Detail />
-        </Route> */}
+        <Route path="/view-detail/:id" component={ViewDetail} />
       </Switch>
     </>
   );

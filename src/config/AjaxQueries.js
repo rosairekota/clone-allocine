@@ -16,6 +16,25 @@ export const fetchPopularMovies = async (page = 1, searchItem) => {
     await axios.get(moviesURL(page).urlMoviesPopular)
   ).data.results;
 };
+export const fetchmovieDetails = async (page = 1, movieId = 1, movieType) => {
+  return await (
+    await axios.get(
+      `${process.env.REACT_APP_API_URL}${movieType}/${movieId}?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR`
+    )
+  ).data;
+};
+
+export const fetchRecommendedsMovies = async (
+  page = 1,
+  movieId = 1,
+  movieType
+) => {
+  return await (
+    await axios.get(
+      `${process.env.REACT_APP_API_URL}${movieType}/${movieId}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR`
+    )
+  ).data.results;
+};
 
 // TVs Ajax:
 
