@@ -1,0 +1,2 @@
+import moviesURL from "../../config/ApiURLS";
+{`${moviesURL(1).imagesURL}${item.poster_path}`}

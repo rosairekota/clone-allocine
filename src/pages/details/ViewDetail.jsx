@@ -11,7 +11,6 @@ import { CircularProgressbar } from "react-circular-progressbar";
 
 import moviesURL from "../../config/ApiURLS";
 import Recommended from "../../components/movies/recommended/Recommended";
-import Accordion from "@material-ui/core/Accordion";
 import Button from "@material-ui/core/Button";
 
 const ViewDetail = (props) => {
@@ -81,14 +80,10 @@ const ViewDetail = (props) => {
                       />
                     </div>
                     <p className="movie-users"> Des utilisateurs</p>
-                    <Button variant="contained" color="secondary">
-                      Secondary
-                    </Button>
+                    <div className="navbar__search"></div>
                   </div>
                   <div>
-                    <Accordion>
-                      <p>{movieDetails.overview}</p>
-                    </Accordion>
+                    <p>{movieDetails.overview}</p>
                   </div>
                 </div>
               </Grid>

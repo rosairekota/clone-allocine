@@ -14,7 +14,7 @@ const Recommended = ({ recommendeds }) => {
   return (
     <Wrapper>
       <Slider {...reactSlickSettings}>
-        {recommendeds.map((movie) => (
+        {recommendeds?.map((movie) => (
           <GridListTile key={movie.id} className="image">
             <Link to={`/view-detail/${movie.id}`}>
               <img

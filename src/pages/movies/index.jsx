@@ -7,6 +7,7 @@ import ReactPaginate from "react-paginate";
 import _TopRatedMovies from "../../components/layouts/section/top-rated-movies/_TopRatedMovies";
 
 const MoviesPage = (props) => {
+  
   return (
     <Wrapper>
       <Container>
