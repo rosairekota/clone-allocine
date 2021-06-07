@@ -17,7 +17,7 @@ import { Wrapper } from "./Home.styles";
 import _BannerSection from "../../components/layouts/section/banner/_Banner";
 import { ButtonCustom } from "../../components/layouts/navigation/Navbar";
 import _MoviesRatedSection from "../../components/layouts/section/top-rated-movies/_TopRatedMovies";
-import _TVSRatedSection from "../../components/layouts/section/series/_TopRatedMovies";
+import _TVSRatedSection from "../../components/layouts/section/series/_TopRatedSeries";
 import { Link } from "react-router-dom";
 import _ActorsSection from "../../components/layouts/section/actrors/_ActorsSection";
 import { UsePage } from "../../hooks/UsePage";

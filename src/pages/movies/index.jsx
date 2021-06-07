@@ -1,13 +1,12 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 
 import { Wrapper } from "../home/Home.styles";
 import ReactPaginate from "react-paginate";
 import _TopRatedMovies from "../../components/layouts/section/top-rated-movies/_TopRatedMovies";
+import _PopularMovies from "../../components/layouts/section/popular-movies/_PopularMovies";
 
 const MoviesPage = (props) => {
-  
   return (
     <Wrapper>
       <Container>
@@ -39,7 +38,7 @@ const MoviesPage = (props) => {
           activeClassName={"pagination__link--active"}
         />
 
-        {/* <_PopularMovies moviesPopular={props.moviesPopular} /> */}
+        <_PopularMovies moviesPopular={props.moviesPopular} />
       </Container>
     </Wrapper>
   );

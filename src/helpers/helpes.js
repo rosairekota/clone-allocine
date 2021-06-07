@@ -1,5 +1,6 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 export const calculateOffset = (perPage, currentPage) => {
   return perPage * currentPage;
@@ -8,7 +9,12 @@ export const calculateOffset = (perPage, currentPage) => {
 export const calculatePageCount = (perPage, totalPages) => {
   return Math.ceil(totalPages / perPage);
 };
+export const PER_PAGE = 20;
 
+export const loarding = (isLoading, error, isPreviousData, isFetching) => {
+  if (isLoading) return <LinearProgress />;
+  else if (error) return <div>Oups,erreur du serveur..</div>;
+};
 export const reactSlickSettings = {
   dots: true,
   infinite: true,

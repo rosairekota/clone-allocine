@@ -6,20 +6,20 @@ import moviesURL from "../../../config/ApiURLS";
 import "react-image-shadow/assets/index.css";
 import { Link } from "react-router-dom";
 
-const Movies = ({ movie }) => {
+const Movies = ({ movie: item }) => {
   return (
     <Wrapper>
       <div className="container">
         <img
-          src={`${moviesURL(0).imagesURL}${movie.poster_path}`}
+          src={`${moviesURL(0).imagesURL}${item.poster_path}`}
           alt="Avatar"
           className="image"
         />
 
-        <p className="body__content"> Votes ★★★: {movie.vote_count}</p>
-        <Link to={`/view-detail/${movie.id}`}>
+        <p className="body__content"> Votes ★★★: {item.vote_count}</p>
+        <Link to={`/view-detail/${item.id}`}>
           <div className="overlay">
-            <div className="text">{movie.title ? movie.title : movie.name}</div>
+            <div className="text">{item.title ? item.title : item.name}</div>
           </div>
         </Link>
       </div>

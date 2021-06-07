@@ -1,26 +1,32 @@
 import { useState } from "react";
 import { UsePage } from "./hooks/UsePage";
-import LinearProgress from "@material-ui/core/LinearProgress";
 
 import Navbar from "./components/layouts/navigation/Navbar";
 
-import { fetchTopRatedMovies } from "./config/AjaxQueries";
-import { fetchPopularMovies } from "./config/AjaxQueries";
+import {
+  fetchPopularMovies,
+  fetchTopRatedSeries,
+  fetchTopRatedMovies,
+  fetchPopularSeries,
+} from "./config/AjaxQueries";
 import { CreateReactQuery } from "./hooks/CreateReactQuery";
 import Home from "./pages/home/Index";
 import { Route, Switch } from "react-router-dom";
-import _BannerSection from "./components/layouts/section/banner/_Banner";
+
 import Series from "./pages/series/";
 import Movies from "./pages/movies";
 import GlobalStyle from "./components/theme/GlobalStyle.styles";
-import { calculatePageCount, calculateOffset } from "./helpers/helpes";
+import {
+  calculatePageCount,
+  calculateOffset,
+  loarding,
+} from "./helpers/helpes";
 import ViewDetail from "./pages/details/ViewDetail";
-
+import { ContextApi } from "./hooks/ContextApi";
 const PER_PAGE = 20;
 
 const App = () => {
-  const [topRatedMoviesPage, setTopRatedMoviesPage] = UsePage(1);
-  const [polularMoviesPage, setPolularMoviesPage] = UsePage(1);
+  const [pageNumber, setPageNumber] = UsePage(1);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -33,8 +39,8 @@ const App = () => {
     error: errorOfMoviesRated,
   } = CreateReactQuery(
     "movierated",
-    String(topRatedMoviesPage),
-    fetchTopRatedMovies(topRatedMoviesPage)
+    String(pageNumber),
+    fetchTopRatedMovies(pageNumber)
   );
 
   const {
@@ -44,18 +50,55 @@ const App = () => {
     isFetching: isFetchingMoviesPopular,
     error: errorOfMoviePopular,
   } = CreateReactQuery(
-    "moviepopular",
-    String(polularMoviesPage),
-    fetchPopularMovies(polularMoviesPage)
+    "moviespopular",
+    String(pageNumber),
+    fetchPopularMovies(pageNumber)
+  );
+  const {
+    data: topRatedSeries,
+    isLoading: loadingTopRatedSeries,
+    isPreviousData: isPreviousTopRatedSeries,
+    isFetching: isFetchingTopRatedSeries,
+    error: errorOfMoviesTopRatedSeries,
+  } = CreateReactQuery(
+    "topRatedSeries",
+    String(pageNumber),
+    fetchTopRatedSeries(pageNumber)
+  );
+  const {
+    data: popularSeries,
+    isLoading: loadingPopularSeries,
+    isPreviousData: isPreviousPopularSeries,
+    isFetching: isFetchingPopularSeries,
+    error: errorOfMoviesPopularSeries,
+  } = CreateReactQuery(
+    "popularSeries",
+    String(pageNumber),
+    fetchPopularSeries(pageNumber)
   );
 
-  const isLoading = loadingMoviesRated && loadingMoviesPopular;
-  const error = errorOfMoviePopular && errorOfMoviesRated;
-  const isPreviousData = isPreviousMoviesRated && isPreviousMoviesPopular;
-  const isFetching = isFetchingMoviesRated && isFetchingMoviesPopular;
+  const isLoading =
+    loadingMoviesRated &&
+    loadingMoviesPopular &&
+    loadingTopRatedSeries &&
+    loadingPopularSeries;
+  const error =
+    errorOfMoviePopular &&
+    errorOfMoviesRated &&
+    isPreviousTopRatedSeries &&
+    isPreviousPopularSeries;
+  const isPreviousData =
+    isPreviousMoviesRated &&
+    isPreviousMoviesPopular &&
+    isFetchingTopRatedSeries &&
+    isFetchingPopularSeries;
+  const isFetching =
+    isFetchingMoviesRated &&
+    isFetchingMoviesPopular &&
+    errorOfMoviesTopRatedSeries &&
+    errorOfMoviesPopularSeries;
 
-  if (isLoading) return <LinearProgress />;
-  else if (error) return <div>Oups,erreur du serveur..</div>;
+  loarding(isLoading, error, isPreviousData, isFetching);
 
   const handelSubmit = (e) => {
     e.preventDefault();
@@ -70,13 +113,13 @@ const App = () => {
     setSearchTerm(e.target.value);
   };
   const handleMoviesRatedPagination = ({ selected: selectedPage }) => {
-    setTopRatedMoviesPage(selectedPage);
+    setPageNumber(selectedPage);
   };
 
   const handleMoviesPopularPagination = ({ selected: selectedPage }) => {
-    setPolularMoviesPage(selectedPage);
+    setPageNumber(selectedPage);
   };
-  const offset = calculateOffset(topRatedMoviesPage, PER_PAGE);
+  const offset = calculateOffset(pageNumber, PER_PAGE);
 
   return (
     <>
@@ -85,7 +128,7 @@ const App = () => {
         handelSubmit={handelSubmit}
         handleOnSelect={handleOnSelect}
         handleOnSearch={handleOnSearch}
-      ></Navbar>
+      />
 
       <Switch>
         <Route exact path="/">
@@ -95,7 +138,7 @@ const App = () => {
           <Movies
             moviesRated={moviesRated}
             moviesPopular={moviesPopular}
-            topMoviesRatedPage={topRatedMoviesPage}
+            topMoviesRatedPage={pageNumber}
             pageCount={calculatePageCount(PER_PAGE, 8704)}
             offsets={offset + PER_PAGE}
             offset={offset}
@@ -103,7 +146,18 @@ const App = () => {
             handleMoviesPopularPagination={handleMoviesPopularPagination}
           />
         </Route>
-        <Route path="/series" component={Series} />
+        <Route path="/series">
+          <Series
+            moviesRated={topRatedSeries}
+            moviesPopular={popularSeries}
+            topMoviesRatedPage={pageNumber}
+            pageCount={calculatePageCount(PER_PAGE, 8704)}
+            offsets={offset + PER_PAGE}
+            offset={offset}
+            handleMoviesRatedPagination={handleMoviesRatedPagination}
+            handleMoviesPopularPagination={handleMoviesPopularPagination}
+          />
+        </Route>
 
         <Route path="/view-detail/:id" component={ViewDetail} />
       </Switch>
