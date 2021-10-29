@@ -19,7 +19,7 @@ import { ButtonCustom } from "../../components/layouts/navigation/Navbar";
 import _MoviesRatedSection from "../../components/layouts/section/top-rated-movies/_TopRatedMovies";
 import _TVSRatedSection from "../../components/layouts/section/series/_TopRatedSeries";
 import { Link } from "react-router-dom";
-import _ActorsSection from "../../components/layouts/section/actrors/_ActorsSection";
+import _ActorsSection from "../../components/layouts/section/actors/_ActorsSection";
 import { UsePage } from "../../hooks/UsePage";
 
 // Queries of MOVI API

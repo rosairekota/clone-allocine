@@ -9,7 +9,6 @@ import _PopularMovies from "../../components/layouts/section/popular-movies/_Pop
 const Series = (props) => {
   return (
     <>
-      {" "}
       <Wrapper>
         <Container>
           <h2 id="films">Les Meilleurs Films</h2>

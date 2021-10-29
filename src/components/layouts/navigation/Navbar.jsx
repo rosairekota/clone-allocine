@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Wrapper } from "./Navbar.styles";
 import Button from "@material-ui/core/Button";
@@ -9,7 +9,9 @@ export const ButtonCustom = (props) => {
     if (props.label == "chat") {
       return (
         <Button className={props.className}>
-          <Link to={props.link}>{props.label}</Link>
+          <Link to={props.link} className={props.linkClass}>
+            {props.label}
+          </Link>
         </Button>
       );
     } else {
@@ -33,9 +35,24 @@ export const ButtonCustom = (props) => {
   return <>{renderButton()}</>;
 };
 const Navbar = (props) => {
+  const [sticky, setSticky] = useState(false);
+  useEffect(() => {
+    handelScroll();
+  }, []);
+  const handelScroll = () => {
+    window.onscroll = () => {
+      if (window.scrollY > 240) {
+        setSticky(true);
+      } else {
+        setSticky(false);
+      
+      }
+    };
+  };
+  // window.addEventListener("scroll", handelScroll);
   return (
     <Wrapper>
-      <div className="navbar__collapse">
+      <div className={sticky ? "navbar__collapse sticky" : "navbar__collapse"}>
         <Link to="/" className="logo">
           Rmovies
         </Link>
@@ -54,7 +71,7 @@ const Navbar = (props) => {
       <form onSubmit={props.handelSubmit}>
         <input
           type="text"
-          onChange={props.handleOnSearch}
+          onChange={props.handleChange}
           className="inputSearch"
           placeholder="Rechercher film,..serie... "
           defaultValue=""

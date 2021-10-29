@@ -13,14 +13,14 @@ const GlobalStyle = createGlobalStyle`
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    //background: linear-gradient(70deg, #28191a, #18191a);
-    background: repeating-radial-gradient(#18191a, #18191a 10px, #28191a 5px, #18191a 15px);
-  
+    background:#030417;
+    background: repeating-radial-gradient(#030417, #030417 10px, #030417 5px, #030417 15px);
+    
 
   .button_chat{
     background-color:${pinkColor};
     color:${whiteColor};
-    width:150px;
+    width:100px;
     transition: 100ms linear;
   
     
@@ -53,11 +53,11 @@ const GlobalStyle = createGlobalStyle`
   width: 100%;
   
 }
-
 .image {
   display: block;
   width: 100%;
   height: auto;
+  
 }
 
 .overlay {
@@ -65,23 +65,26 @@ const GlobalStyle = createGlobalStyle`
   bottom: 100%;
   left: 0;
   right: 0;
-  background-color: ${whiteColor};
+  box-shadow: 2px -10px 153px 75px rgba(0,0,0,0.87) inset;
   overflow: hidden;
   width: 100%;
   height: 0;
   transition: .5s ease;
+  color:${whiteColor};
 }
 
 .container:hover .overlay {
   bottom: 0;
   height: 100%;
   cursor:pointer;
+  color:${whiteColor};
+  
 }
 
 .text {
   white-space: wrap; 
-  color: #01010a;
-  font-size: 0.7rem;
+  //color: #01010a;
+  font-size: 1.2rem;
   position: absolute;
   overflow: hidden;
   top: 50%;

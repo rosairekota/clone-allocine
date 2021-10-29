@@ -10,6 +10,9 @@ export const Wrapper = Styled.header`
      justify-content:space-between;
      align-items:center;
      text-transform:uppercase;
+     position:fixed;
+     z-index:999;
+  
   
   ul{
     display:flex;
@@ -34,6 +37,9 @@ export const Wrapper = Styled.header`
     justify-content:space-between;
     align-items:center;
   }
+  .navbar__collapse.sticky{
+    background-color: transparent;
+  }
   .navbar__nav{
     display:flex;
     flex-direction:row;
@@ -46,6 +52,7 @@ export const Wrapper = Styled.header`
     flex-direction:row;
     justify-content:flex-end;
     align-items:center;
+   
   }
   .btn-click{
     display:flex;
@@ -73,6 +80,25 @@ export const Wrapper = Styled.header`
 
   }
  }
+ @media screen and (max-width:768px){
+  .inputSearch{
+    width: 0px;
+    margin-right:0rem;
+    outline:none;
+    padding:0rem;
+    border:0;
+    border-radius:0px;
+    font-size:0px;
+
+  }
+  ul>li, .btn-click{
+    display:none;
+  }
+  
+ }
+ 
+  
+ 
 
 
 `;

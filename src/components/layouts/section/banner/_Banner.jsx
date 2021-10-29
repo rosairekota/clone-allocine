@@ -11,6 +11,7 @@ import Slider from "react-slick";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import { ButtonCustom } from "../../navigation/Navbar";
 
 const _Banner = ({ topRatedMovies }) => {
   const settings = {
@@ -121,6 +122,13 @@ const _Banner = ({ topRatedMovies }) => {
             </Slider>
           ))}
         </Carousel>
+        <div className="bg__transparent">
+          <h1>
+            DECOUVREZ TOUS VOS FILMS ET SERIES AVEC <br />
+            <span>TALA FILMS</span>
+          </h1>
+          <ButtonCustom className="button_chat" label="Découvrir" />
+        </div>
       </Wrapper>
     </>
   );

@@ -4,7 +4,7 @@ const moviesURL = (page, search = "", movie_id, movieType = "") => {
     urlMoviesPopular: `${process.env.REACT_APP_API_URL}movie/popular?page=${page}&api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR`,
     urlMoviesLatest: `${process.env.REACT_APP_API_URL}movie/popular?page=${page}&api_key=${process.env.REACT_APP_API_KEY}`,
     urlMovieDetails: `${process.env.REACT_APP_API_URL}movie/${movie_id}?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR`,
-    urlSearchMovies: `${process.env.REACT_APP_API_URL}search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR&query=${search}`,
+    urlSearchMovies: `${process.env.REACT_APP_API_URL}search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR&include_adult=false&query=${search}`,
     imagesURL: `https://image.tmdb.org/t/p/w500/`,
     imagesOginalURL: `http://image.tmdb.org/t/p/original/`,
     videosURL: `https://api.themoviedb.org/3/tv/${movie_id}/videos?api_key=${process.env.REACT_APP_API_URL}&language=fr-FR`,

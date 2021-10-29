@@ -8,6 +8,7 @@ import {
   fetchTopRatedSeries,
   fetchTopRatedMovies,
   fetchPopularSeries,
+  fetchMultiSearch,
 } from "./config/AjaxQueries";
 import { CreateReactQuery } from "./hooks/CreateReactQuery";
 import Home from "./pages/home/Index";
@@ -23,6 +24,7 @@ import {
 } from "./helpers/helpes";
 import ViewDetail from "./pages/details/ViewDetail";
 import { ContextApi } from "./hooks/ContextApi";
+import Footer from "./components/layouts/footer/Footer";
 const PER_PAGE = 20;
 
 const App = () => {
@@ -102,15 +104,21 @@ const App = () => {
 
   const handelSubmit = (e) => {
     e.preventDefault();
-
-    searchResult(searchTerm);
+    searchMovie();
   };
 
-  const handleOnSelect = (item) => {
-    setSearchTerm(item);
-  };
-  const handleOnSearch = (e) => {
+  const handleChange = (e) => {
+    e.preventDefault();
     setSearchTerm(e.target.value);
+    const results = fetchMultiSearch(e.target.value);
+
+    console.log("toto", results);
+  };
+  const searchMovie = () => {
+    const results = fetchMultiSearch(searchTerm);
+    if (results.length < 0) {
+      console.log(results);
+    }
   };
   const handleMoviesRatedPagination = ({ selected: selectedPage }) => {
     setPageNumber(selectedPage);
@@ -124,16 +132,13 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <Navbar
-        handelSubmit={handelSubmit}
-        handleOnSelect={handleOnSelect}
-        handleOnSearch={handleOnSearch}
-      />
+      <Navbar handelSubmit={handelSubmit} handleChange={handleChange} />
 
       <Switch>
         <Route exact path="/">
           <Home />
         </Route>
+        <Route path="/view-detail/:id" component={ViewDetail} />
         <Route path="/films">
           <Movies
             moviesRated={moviesRated}
@@ -158,9 +163,8 @@ const App = () => {
             handleMoviesPopularPagination={handleMoviesPopularPagination}
           />
         </Route>
-
-        <Route path="/view-detail/:id" component={ViewDetail} />
       </Switch>
+      <Footer />
     </>
   );
 };
