@@ -1,4 +1,14 @@
-import Styled from 'styled-components';
-import { Wrapper as HomeWrapper } from '../home/Home.styles';
+import Styled from "styled-components";
 
-export const Wrapper = Styled(HomeWrapper);
+export const Wrapper = Styled.div`
+ .moviesRated,.moviesPopular{
+  padding-top:5rem;
+}
+@media screen and (max-width:768px){
+ .moviesRated,.moviesPopular{
+  margin-top:5rem;
+}
+  .moviesRated,.moviesPopular{
+  margin-top:2rem;
+}
+`;

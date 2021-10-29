@@ -14,7 +14,10 @@ export const Wrapper = Styled.header`
      text-transform:uppercase;
      position:fixed;
      z-index:999;
-     &.sticky{background-color:#030417;}
+     &.sticky{
+       background-color:#030417;
+        border-bottom:1px solid #7e9ae4;
+     }
   }
   ul{
     display:flex;
@@ -39,7 +42,7 @@ export const Wrapper = Styled.header`
     justify-content:space-between;
     align-items:center;
     margin-right:3rem;
-    padding:0 6rem;
+    padding:0 3rem;
   }
   .navbar__nav{
     display:flex;
