@@ -48,8 +48,34 @@ background: linear-gradient(360deg, rgba(3,2,23,1) 24%, rgba(158,36,49,0.5970763
             font-weight: bold;
             font-size: 3rem;
             text-transform:uppercase;
+            @media screen and (max-width:800px){
+            &{
+            font-size: 2rem;
+        
+        }
         }
         
     }
+}
+@media screen and (max-width:800px){
+    .img-custom{
+    height:100px;
+   
+}
+h1{font-size:18px;}
+ span{font-size: 20px;}
+.button_chat{
+    font-size:16px;
+}
+@media (max-width:300px){
+    .img-custom{
+    height:50px;
+   
+}
+.button_chat{
+    font-size:10px;
+}
+h1{font-size:16px;}
+ span{font-size: 18px;}
 }
 `;
