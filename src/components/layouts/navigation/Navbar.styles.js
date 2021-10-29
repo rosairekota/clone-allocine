@@ -1,8 +1,9 @@
 import Styled from "styled-components";
 
 export const Wrapper = Styled.header`
- //background-color:#2B2D3B;
-      margin:0;
+    margin:0;
+    width:100%;
+  .navbar{
       padding:0.5rem;
       color:white;
       z-index:999;
@@ -12,8 +13,8 @@ export const Wrapper = Styled.header`
      text-transform:uppercase;
      position:fixed;
      z-index:999;
-  
-  
+     &.sticky{background-color:#030417;}
+  }
   ul{
     display:flex;
     justify-content:space-evenly;
@@ -37,9 +38,7 @@ export const Wrapper = Styled.header`
     justify-content:space-between;
     align-items:center;
     margin-right:3rem;
-  }
-  .navbar__collapse.sticky{
-    background-color: transparent;
+    padding:0 6rem;
   }
   .navbar__nav{
     display:flex;
@@ -64,8 +63,12 @@ export const Wrapper = Styled.header`
 
   .logo{
     fon-size:7rem;
-    color:#ea5152;
+    color:#080a32;
     font-weight:bold;
+    &.sticky{ 
+    color:#ea5152;
+  }
+  
   }
   
   

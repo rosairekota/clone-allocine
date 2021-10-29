@@ -1,7 +1,7 @@
 import Styled from "styled-components";
 
 export const Wrapper = Styled.div`
-height:500px;
+height:550px;
 position: relative;
 right: 0;
 left: 0;
@@ -24,6 +24,7 @@ img{
     font-weight:bold;
     width:100%;
     text-transform: capitalize;
+    padding: 10px 30px;
 }
 .bg__transparent{
     height:300px;
@@ -67,6 +68,7 @@ h1{font-size:18px;}
  span{font-size: 20px;}
 .button_chat{
     font-size:16px;
+    padding: 5px 15px;
 }
 @media (max-width:300px){
     .img-custom{
@@ -75,6 +77,7 @@ h1{font-size:18px;}
 }
 .button_chat{
     font-size:10px;
+    padding: 2px 5px;
 }
 h1{font-size:16px;}
  span{font-size: 18px;}

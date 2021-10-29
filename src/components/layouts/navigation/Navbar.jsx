@@ -43,7 +43,7 @@ const Navbar = (props) => {
   }, []);
   const handelScroll = () => {
     window.onscroll = () => {
-      if (window.scrollY > 240) {
+      if (window.scrollY > 70) {
         setSticky(true);
       } else {
         setSticky(false);
@@ -59,34 +59,32 @@ const Navbar = (props) => {
   // window.addEventListener("scroll", handelScroll);
   return (
     <Wrapper>
-      <div className={sticky ? "navbar__collapse sticky" : "navbar__collapse"}>
-        <Link to="/" className="logo">
-          WorldMovies
-        </Link>
-        <ul className="navbar__nav">
-          <li>
-            <Link to="/">Accueil</Link>
-          </li>
-          <li>
-            <Link to="/films"> Films</Link>
-          </li>
-          <li>
-            <Link to="/series">Series</Link>
-          </li>
-        </ul>
-      </div>
-      <form onSubmit={props.handelSubmit}>
-        <input
-          type="text"
-          onChange={handleChange}
-          className="inputSearch"
-          placeholder="Rechercher une film,une serie,...de votre choix "
-          defaultValue=""
-        />
-      </form>
-
-      <div className="navbar__search">
-        <ButtonCustom className="button_chat" label="acteurs" />
+      <div className={sticky ? "navbar sticky" : "navbar"}>
+        <div className={"navbar__collapse"}>
+          <Link to="/" className={sticky ? "logo sticky" : "logo"}>
+            WorldMovies
+          </Link>
+          <ul className="navbar__nav">
+            <li>
+              <Link to="/">Accueil</Link>
+            </li>
+            <li>
+              <Link to="/films"> Films</Link>
+            </li>
+            <li>
+              <Link to="/series">Series</Link>
+            </li>
+          </ul>
+        </div>
+        <form onSubmit={props.handelSubmit}>
+          <input
+            type="text"
+            onChange={handleChange}
+            className="inputSearch"
+            placeholder="Rechercher une film,une serie,...de votre choix "
+            defaultValue=""
+          />
+        </form>
       </div>
     </Wrapper>
   );

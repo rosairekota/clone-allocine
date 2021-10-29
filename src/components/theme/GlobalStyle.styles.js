@@ -40,10 +40,15 @@ const GlobalStyle = createGlobalStyle`
     a:hover{
       color:${pinkColor};
     }
-    .button_chat:hover{
+    .button_chat{
       background-color:transparent;
+       border-radius: 40px;
       color:#f1f1f1;
       border:2px solid ${pinkColor};
+    }
+    .button_chat:hover{
+      background-color:transparent;
+     
   
   }
   }
