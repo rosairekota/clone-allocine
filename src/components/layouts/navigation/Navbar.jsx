@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { Wrapper } from "./Navbar.styles";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import { SearchMovies } from "../../../pages/search/SearchMovies";
 
 export const ButtonCustom = (props) => {
   const renderButton = () => {
-    if (props.label == "chat") {
+    if (props.label.toLowerCase() === "acteurs") {
       return (
         <Button className={props.className}>
           <Link to={props.link} className={props.linkClass}>
@@ -36,6 +37,7 @@ export const ButtonCustom = (props) => {
 };
 const Navbar = (props) => {
   const [sticky, setSticky] = useState(false);
+  const [redirect, setRedirect] = useState(false);
   useEffect(() => {
     handelScroll();
   }, []);
@@ -45,16 +47,21 @@ const Navbar = (props) => {
         setSticky(true);
       } else {
         setSticky(false);
-      
       }
     };
+  };
+  const handleChange = (e) => {
+    setRedirect(true);
+    if (redirect) {
+      return SearchMovies;
+    }
   };
   // window.addEventListener("scroll", handelScroll);
   return (
     <Wrapper>
       <div className={sticky ? "navbar__collapse sticky" : "navbar__collapse"}>
         <Link to="/" className="logo">
-          Rmovies
+          WorldMovies
         </Link>
         <ul className="navbar__nav">
           <li>
@@ -71,15 +78,15 @@ const Navbar = (props) => {
       <form onSubmit={props.handelSubmit}>
         <input
           type="text"
-          onChange={props.handleChange}
+          onChange={handleChange}
           className="inputSearch"
-          placeholder="Rechercher film,..serie... "
+          placeholder="Rechercher une film,une serie,...de votre choix "
           defaultValue=""
         />
       </form>
 
       <div className="navbar__search">
-        <ButtonCustom className="button_chat" label="chat" />
+        <ButtonCustom className="button_chat" label="acteurs" />
       </div>
     </Wrapper>
   );

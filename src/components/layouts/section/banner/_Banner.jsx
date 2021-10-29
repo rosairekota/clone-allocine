@@ -125,9 +125,13 @@ const _Banner = ({ topRatedMovies }) => {
         <div className="bg__transparent">
           <h1>
             DECOUVREZ TOUS VOS FILMS ET SERIES AVEC <br />
-            <span>TALA FILMS</span>
+            <span>WorldMovies</span>
           </h1>
-          <ButtonCustom className="button_chat" label="Découvrir" />
+          <ButtonCustom
+            className="button_chat"
+            label="Découvrir"
+            link="/films"
+          />
         </div>
       </Wrapper>
     </>

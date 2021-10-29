@@ -48,6 +48,7 @@ background: linear-gradient(360deg, rgba(3,2,23,1) 24%, rgba(158,36,49,0.5970763
             font-weight: bold;
             font-size: 3rem;
             text-transform:uppercase;
+            
             @media screen and (max-width:800px){
             &{
             font-size: 2rem;

@@ -13,7 +13,6 @@ const GlobalStyle = createGlobalStyle`
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background:#030417;
     background: repeating-radial-gradient(#030417, #030417 10px, #030417 5px, #030417 15px);
     
 

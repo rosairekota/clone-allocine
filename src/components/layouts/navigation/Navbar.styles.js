@@ -36,6 +36,7 @@ export const Wrapper = Styled.header`
     flex-direction:row;
     justify-content:space-between;
     align-items:center;
+    margin-right:3rem;
   }
   .navbar__collapse.sticky{
     background-color: transparent;
@@ -73,7 +74,7 @@ export const Wrapper = Styled.header`
     width: 400px;
     margin-right:10rem;
     outline:none;
-    padding:1rem;
+    padding:0.8rem;
     border:0;
     border-radius:40px;
     font-size:16px;
