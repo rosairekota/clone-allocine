@@ -1,7 +1,12 @@
 import Styled from "styled-components";
 
 export const Wrapper = Styled.div`
- p{color:#fff;}
+ padding:5rem 0;
+
+ p{
+     color:#fff;
+     line-height: 2;
+ }
  .movie-detail-title{
      font-size:2.5rem;
      color: #fff;

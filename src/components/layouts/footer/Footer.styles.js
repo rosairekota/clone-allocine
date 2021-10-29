@@ -3,10 +3,10 @@ import { whiteColor, pinkColor } from "../../theme/GlobalStyle.styles";
 
 export const Wrapper = Styled.div`  
 background-color: #fff;
+color: #030417;
 max-width: 100%;
  margin:0;
 padding:0.5rem;
-color:white;
 z-index:999;
 display:flex;
 justify-content:space-evenly;
@@ -18,15 +18,20 @@ display:flex;
 flex-direction: column;
 justify-content:space-evenly;
 align-items:space-between;
+text-transform:uppercase;
 
 
 li{
     color: #000;
 display:block;
 text-underline:none;
-padding-left:2rem;
+ margin:0.5rem;
+ li:hover{
+     color:#ea5152;
+ }
 a{
     color: #000;
+    margin:2rem;
     a:hover{
         color:#ea5152;
     }

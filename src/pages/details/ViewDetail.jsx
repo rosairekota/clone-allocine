@@ -47,9 +47,9 @@ const ViewDetail = (props) => {
 
   return (
     <>
-      <Container>
-        <Grid container spacing={2}>
-          <Wrapper>
+      <Wrapper>
+        <Container>
+          <Grid container spacing={2}>
             <Grid container spacing={4}>
               <Grid item xs={12} md={3} sm={10}>
                 <div className="container">
@@ -88,13 +88,13 @@ const ViewDetail = (props) => {
                 </div>
               </Grid>
             </Grid>
-          </Wrapper>
-        </Grid>
-      </Container>
-      <Container>
-        <h1>Recommender pour vous</h1>
-        <Recommended recommendeds={recommended} />
-      </Container>
+          </Grid>
+        </Container>
+        <Container>
+          <h1>Recommender pour vous</h1>
+          <Recommended recommendeds={recommended} />
+        </Container>
+      </Wrapper>
     </>
   );
 };
