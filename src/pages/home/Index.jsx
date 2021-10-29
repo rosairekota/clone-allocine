@@ -89,18 +89,22 @@ const HomePage = (props) => {
             link="/films"
           />
 
-          <h2 className="mt-2">Les Meilleurs Series</h2>
+          <div className="seriesRated">
+            <h2 className="mt-2">Les Meilleurs Series</h2>
 
-          <_TVSRatedSection topRatedSeries={SeriesRated} label="home" />
+            <_TVSRatedSection topRatedSeries={SeriesRated} label="home" />
 
-          <ButtonCustom
-            className="button_chat"
-            label="Voir plus"
-            link="/series"
-          />
+            <ButtonCustom
+              className="button_chat"
+              label="Voir plus"
+              link="/series"
+            />
+          </div>
 
-          <h2 className="mt-2">Les Acteurs Les Plus populaires</h2>
-          <_ActorsSection Popularactors={Popularactors} />
+          <div className="actors">
+            <h2 className="mt-2">Les Acteurs Les Plus populaires</h2>
+            <_ActorsSection Popularactors={Popularactors} />
+          </div>
         </Container>
       </Wrapper>
     </div>

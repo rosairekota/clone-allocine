@@ -10,7 +10,12 @@ export const Wrapper = Styled.div`
   width:50%;
   cursor: pointer;
 }
-
+.seriesRated,.actors{
+  margin-top:5rem;
+}
+.actors{
+  margin-bottom:5rem;
+}
 .pagination a {
   padding: 10px;
   border-radius: 5px;
@@ -41,5 +46,13 @@ export const Wrapper = Styled.div`
     margin-bottom:3rem;
 }
 
+@media screen and (max-width:768px){
+  .seriesRated,.actors{
+  margin-top:2rem;
+}
+.actors{
+  margin-bottom:5rem;
+}
+}
 
 `;

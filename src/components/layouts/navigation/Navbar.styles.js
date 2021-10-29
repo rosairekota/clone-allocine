@@ -4,6 +4,7 @@ export const Wrapper = Styled.header`
     margin:0;
     width:100%;
   .navbar{
+     width:100%;
       padding:0.5rem;
       color:white;
       z-index:999;
@@ -63,8 +64,8 @@ export const Wrapper = Styled.header`
 
   .logo{
     fon-size:7rem;
-    color:#080a32;
-    font-weight:bold;
+    color:#ccd6e6;
+    font-weight:700;
     &.sticky{ 
     color:#ea5152;
   }
