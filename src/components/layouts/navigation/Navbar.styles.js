@@ -16,7 +16,7 @@ export const Wrapper = Styled.header`
      z-index:999;
      &.sticky{
        background-color:#030417;
-        border-bottom:1px solid #7e9ae4;
+        border-bottom:1px solid #1e2132;
      }
   }
   ul{
